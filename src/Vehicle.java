@@ -32,4 +32,14 @@ public class Vehicle {
     public double calculateTollPrice() {
         return tollFee * passengers;
     }
+
+    public void printInfo() {
+        System.out.println("License Plate: " + licensePlate);
+        System.out.println("Toll Fee: " + tollFee);
+        System.out.println("Passenger Count: " + passengers);
+    }
+
+    public void chargeTip() {
+        System.out.println("This vehicle is not for commercial transportation, so no tip is charged!");
+    }
 }

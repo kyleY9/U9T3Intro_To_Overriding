@@ -16,12 +16,11 @@ public class Truck extends Vehicle {
         return hasTrailer;
     }
 
-    public void printTruck() {
-        System.out.println("License plate: " + getLicensePlate());
-        System.out.println("Toll fee: " + getTollFee());
-        System.out.println("Passengers: " + getPassengers());
-        System.out.println("Number of axles: " + axles);
-        System.out.println("Has trailer? " + hasTrailer);
+    @Override
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Axle Count: " + axles);
+        System.out.println("Has Trailer? " + hasTrailer);
     }
 
     public boolean validateLicensePlate() {
@@ -36,6 +35,15 @@ public class Truck extends Vehicle {
         } else {
             // trucks without trailers automatically return true
             return true;
+        }
+    }
+
+    @Override
+    public double calculateTollPrice() {
+        if (!hasTrailer) {
+            return getTollFee() * axles;
+        } else {
+            return 2 * (getTollFee() * axles);
         }
     }
 }

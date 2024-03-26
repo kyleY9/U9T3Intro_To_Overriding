@@ -14,13 +14,10 @@ public class Taxi extends Car {
         return fareCollected;
     }
 
-    public void printTaxi() {
-        System.out.println("License plate: " + getLicensePlate());
-        System.out.println("Toll fee: " + getTollFee());
-        System.out.println("Passengers: " + getPassengers());
-        System.out.println("Electric? " + isElectric());
-        System.out.println("Discount applied? " + isDiscountApplied());
-        System.out.println("Total fare collected: " + fareCollected);
+    @Override
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Fare Collected: " + fareCollected);
     }
 
     public void pickupRiders(int numRiders, double farePerRider) {
@@ -37,5 +34,18 @@ public class Taxi extends Car {
             setTollFee(getTollFee() * 0.5);  // inherited method from Vehicle
             setDiscountApplied(true);  // setter method added to Car class
         }
+    }
+
+    public boolean chargeAndDropOffRiders(double farePerRider) {
+        fareCollected += (getPassengers() - 1) * farePerRider;
+        return dropOffPassengers(getPassengers() - 1);
+    }
+
+    @Override
+    public void chargeTip() {
+        System.out.println("Total Fare Before Tip: " + fareCollected);
+        fareCollected *= 1.2; // adds a 20% tip
+        System.out.println("Total Fare After Tip: " + fareCollected);
+        System.out.println("Tip has been successfully collected.");
     }
 }
